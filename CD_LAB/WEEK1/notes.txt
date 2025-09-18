@@ -1,0 +1,31 @@
+regex for expressions
+
+1. even no. of a's and b's
+  "abaabbab"
+=>  (aa|bb|(ab|ba)(aa|bb)*(ab|ba))*
+
+2. vowels in order; can repeat
+ex: aeiou ✅
+    aieou ❌
+    kabfgeihjpolmvu ✅
+    aaeplkmiiirtyou ✅
+=>  ^([^aeiou]*a+[^aeiou]*e+[^aeiou]*i+[^aeiou]*o+[^aeiou]*u+[^aeiou]*)$
+
+3. should accept the letters in ascending lexical order
+=>  a*b*c*d*e*f*g*h*i*j*k*l*m*n*o*p*q*r*s*t*u*v*w*x*y*z*
+Example matches:
+"aabbbc" ✅
+"abc" ✅
+"aabbcc" ✅
+"z" ✅
+Example non-matches:
+"cba" ❌ (descending order)
+"bac" ❌ (letters out of order)
+
+4. strings that do not contain substring "abb"
+=> (b*(a(a|ba)*b?)*)*
+
+5. not containing subsequence "abb"
+=> b*|b*a+|b*a+ba*
+
+6. accept comments consisting a string surrounded by /* and */, without any intervening */ unless it is inside double quotes (") 
